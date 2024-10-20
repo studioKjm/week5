@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+let comments = []; 
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
@@ -20,7 +22,14 @@ app.get('/create', function(req, res) {
 });
 
 app.post('/create', function(req, res) {
-  console.log(req.query)
+  console.log(req.body)
+  
+  const { content } = req.body
+
+  comments.push(content)
+
+  console.log(comments);
+
   res.send('hi')
 });
 
