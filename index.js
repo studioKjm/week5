@@ -1,20 +1,28 @@
 var express = require('express');
 var app = express();
 
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-
-// index page
 app.get('/', function(req, res) {
-  res.render('pages/index');
+  res.render('index',{num:3}) 
 });
 
 // about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
+app.get('/create', function(req, res) {
+  console.log(req.query)
+  res.send('hi')
 });
 
-app.listen(8080);
-console.log('Server is listening on port 8080');
+app.post('/create', function(req, res) {
+  console.log(req.query)
+  res.send('hi')
+});
+
+app.listen(3000);
+console.log('Server is listening on port 3000');
